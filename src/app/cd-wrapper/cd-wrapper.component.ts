@@ -21,8 +21,8 @@ const changeDetection = ChangeDetectionStrategy.OnPush;
   template: `
     <header>
       <span>Root</span>
-      <span>CD Changes: {{ cdChanges }}</span>
-      <span>CD Checks: {{ cdChecked }}</span>
+      <span>CD Changes: {{ cdChanges() }}</span>
+      <span>CD Checks: {{ cdChecked() }}</span>
       <button (click)="counter = counter + 1">click {{ counter }}</button>
     </header>
 

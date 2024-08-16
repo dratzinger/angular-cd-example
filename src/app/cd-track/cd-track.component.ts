@@ -3,6 +3,7 @@ import {
   Component,
   OnChanges,
   SimpleChanges,
+  signal,
 } from '@angular/core';
 
 @Component({
@@ -13,17 +14,17 @@ import {
   styles: ``,
 })
 export class CdTrackComponent implements OnChanges, AfterViewChecked {
-  cdChecked = 0;
-  cdChanges = 0;
+  cdChecked = signal(0);
+  cdChanges = signal(0);
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('CD triggered', { changes });
-    this.cdChanges++;
+    this.cdChanges.update((n) => n + 1);
   }
 
   ngAfterViewChecked(): void {
     console.log('CD checked', 'Component', this);
-    this.cdChecked++;
+    this.cdChecked.update((n) => n + 1);
   }
 
   noop = () => {};

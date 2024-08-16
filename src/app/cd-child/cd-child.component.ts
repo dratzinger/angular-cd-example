@@ -23,8 +23,8 @@ import { UpperCasePipe } from '@angular/common';
     <header>
       <span>Branch: {{ branch() | uppercase }}</span>
       <span><ng-content /></span>
-      <span>CD Changes: {{ cdChanges }}</span>
-      <span>CD Checks: {{ cdChecked }}</span>
+      <span>CD Changes: {{ cdChanges() }}</span>
+      <span>CD Checks: {{ cdChecked() }}</span>
       <button (click)="counter = counter + 1">clicks {{ counter }}</button>
     </header>
 
