@@ -6,9 +6,6 @@ import { CdWrapperComponent } from './cd-wrapper/cd-wrapper.component';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, CdWrapperComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  template: `<app-cd-wrapper />`,
 })
-export class AppComponent {
-  title = 'angular-cd-example';
-}
+export class AppComponent {}
