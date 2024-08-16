@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   Input,
   OnChanges,
+  signal,
   SimpleChanges,
 } from '@angular/core';
 import { CdChildComponent } from '../cd-child/cd-child.component';
@@ -25,8 +27,11 @@ const changeDetection = ChangeDetectionStrategy.OnPush;
     </header>
 
     <main>
-      <app-cd-child [recursions]="3" branch="A" />
-      <app-cd-child [recursions]="3" branch="B" />
+      @for (item of branches(); track $index) {
+      <app-cd-child [branch]="item" />
+      }
+
+      <button (click)="add()">+</button>
     </main>
   `,
   styles: `
@@ -43,6 +48,15 @@ const changeDetection = ChangeDetectionStrategy.OnPush;
 })
 export class CdWrapperComponent extends CdTrackComponent {
   counter = 0;
+
+  children = signal(2);
+  branches = computed(() =>
+    Array.from(Array(this.children()).keys()).map((n) =>
+      String.fromCharCode(n + 97)
+    )
+  );
+
+  add = () => this.children.update((num) => num + 1);
 
   constructor() {
     super();
